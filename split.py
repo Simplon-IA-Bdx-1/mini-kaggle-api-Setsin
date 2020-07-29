@@ -5,5 +5,5 @@ data = pd.read_csv('upload/cs-training.csv', index_col=0)
 
 train2, test2 = train_test_split(data, test_size=0.50, random_state=42)
 
-train2.to_csv('upload/train2.csv', index=False, header=None)
-test2.to_csv('upload/test2.csv', index=False, header=None)
+train2.to_csv('upload/train2.csv', index=False)
+test2.to_csv('upload/test2.csv', index=False)
