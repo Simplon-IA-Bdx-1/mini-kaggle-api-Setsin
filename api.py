@@ -2,13 +2,13 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 import pandas as pd
 import os
 from werkzeug.utils import secure_filename
+from predict import *
 
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'upload'
 ALLOWED_EXTENSIONS = {'csv','xls'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -30,8 +30,6 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-
-
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -41,6 +39,15 @@ def upload_file():
       <input type=submit value=Upload>
     </form>
     '''
+
+@app.route('/submit', methods=['POST'])
+def predict():
+        return  {
+            "Mon AUC" : score
+                }
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
