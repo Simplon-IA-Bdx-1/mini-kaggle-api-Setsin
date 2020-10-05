@@ -14,6 +14,7 @@ target = 'SeriousDlqin2yrs'
 
 X = train.drop([target],axis=1).values
 y = test[target].values
+
 X_train,X_test,y_train,y_test = train_test_split(X,y,random_state=0)
 
 clf = tree.DecisionTreeClassifier().fit(X_train, y_train)
